@@ -61,7 +61,6 @@ const footer = windowWidth => ({
   width: '100%',
   fontFamily: 'Bungee',
   flexDirection: windowWidth > MAX_WIDTH_FOR_SMALL_SCREEN_SIZE ? 'row' : 'column',
-  height: '50px',
   alignItems: 'center',
   fontSize: '12px',
 })
@@ -78,7 +77,7 @@ const link = {
 const screenshotsContainer = windowWidth => ({
   display: 'flex',
   flexDirection: windowWidth > MAX_WIDTH_FOR_SMALL_SCREEN_SIZE ? 'row' : 'column',
-  marginTop: '30px',
+  marginTop: '50px',
 })
 
 const screenshot = windowWidth => ({
