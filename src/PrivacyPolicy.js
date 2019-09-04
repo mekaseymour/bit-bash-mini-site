@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import bitBashLogo from './bitBashLogo.svg';
 
 const PrivacyPolicy = () => (
   <div style={container}>
-  <Link to="/"><img style={homeIcon} src={bitBashLogo} /></Link>
+  <Link style={{fontFamily: 'Bungee Shade', textDecoration: 'none', color: 'black', fontSize: 20}} to="/">Bit Bash</Link>
   <h2 style={header}>Privacy Policy</h2> <p>
                   Meka Labs built the Bit Bash app as
                   an Ad Supported app. This SERVICE is provided by

@@ -40,8 +40,8 @@ const Index = () => {
 
 const App = () => (<Router>
   <Route path="/" exact component={Index} />
-  <Route path="/privacy/" component={PrivacyPolicy} />
-  {window.location.pathname.includes('privacy') && <Redirect to="/privacy" />}
+  <Route path="/privacy/" exact component={PrivacyPolicy} />
+  {window.location.pathname.includes('privacy') && <Redirect to="/" />}
 </Router>)
 
 const appleIcon = windowWidth => ({
