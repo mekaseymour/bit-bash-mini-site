@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Link} from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
-import activeGameImage from './activeGame.svg'
-import wonGameImage from './wonGame.svg'
+import activeGameImage from './game-screenshot-compressor.png';
+import wonGameImage from './game-won-compressor.png';
+import appStoreIcon from './app-store-icon.svg';
 
 import PrivacyPolicy from './PrivacyPolicy';
 
@@ -31,18 +32,22 @@ const Index = () => {
         <img style={screenshot(windowWidth)} src={activeGameImage} />
         <img style={screenshot(windowWidth)} src={wonGameImage} />
       </div>
-
+      <img style={appleIcon(windowWidth)} src={appStoreIcon} />
       <div style={footer(windowWidth)}><Link style={link} to="/privacy/">Privacy Policy</Link></div>
     </div>
   );
 }
 
-const App = () => (
-  <Router>
-    <Route path="/" exact component={Index} />
+const App = () => (<Router>
+  <Route path="/" exact component={Index} />
   <Route path="/privacy/" component={PrivacyPolicy} />
-</Router>
-  )
+  {window.location.pathname.includes('privacy') && <Redirect to="/privacy" />}
+</Router>)
+
+const appleIcon = windowWidth => ({
+  marginBottom: '20px',
+  marginTop: windowWidth > MAX_WIDTH_FOR_SMALL_SCREEN_SIZE ? '40px' : 0,
+});
 
 const container = {
   display: 'flex',
@@ -51,18 +56,19 @@ const container = {
   minHeight: '100vh',
   height: '100%',
   alignItems: 'center',
-  padding: '20px'
+  padding: '20px',
+  position: 'relative',
 }
 
 const footer = windowWidth => ({
   display: 'flex',
-  marginTop: '30px',
-  justifySelf: 'flex-end',
-  width: '100%',
   fontFamily: 'Bungee',
-  flexDirection: windowWidth > MAX_WIDTH_FOR_SMALL_SCREEN_SIZE ? 'row' : 'column',
-  alignItems: 'center',
+  flexDirection: 'row',
   fontSize: '12px',
+  position: 'absolute',
+  bottom: 0,
+  marginBottom: '20px',
+  justifyContent: 'center',
 })
 
 const header = windowWidth => ({
@@ -77,11 +83,14 @@ const link = {
 const screenshotsContainer = windowWidth => ({
   display: 'flex',
   flexDirection: windowWidth > MAX_WIDTH_FOR_SMALL_SCREEN_SIZE ? 'row' : 'column',
-  marginTop: '50px',
+  margin: '50px 0 0 0',
 })
 
 const screenshot = windowWidth => ({
-  height: windowWidth > MAX_WIDTH_FOR_SMALL_SCREEN_SIZE ? '600px' : '500px',
+  height: windowWidth > MAX_WIDTH_FOR_SMALL_SCREEN_SIZE ? '600px' : 'auto',
+  width: windowWidth > MAX_WIDTH_FOR_SMALL_SCREEN_SIZE ? 'auto' : '200px',
+  margin: '0 20px',
+  marginBottom: windowWidth > MAX_WIDTH_FOR_SMALL_SCREEN_SIZE ? 0 : '20px',
 })
 
 const subHeader = windowWidth => ({
