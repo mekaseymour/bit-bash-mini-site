@@ -3,8 +3,7 @@ import {
   BrowserRouter as Router,
   Redirect,
   Route,
-  Link,
-  Switch
+  Link
 } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
@@ -50,10 +49,8 @@ const Index = () => {
 
 const App = () => (
   <Router>
-    <Switch>
-      <Route path="/" exact component={Index} />
-      <Route path="/*" exact component={PrivacyPolicy} />
-    </Switch>
+    <Route path="/" exact component={Index} />
+    <Route path="/privacy/" exact component={PrivacyPolicy} />
   </Router>
 );
 
